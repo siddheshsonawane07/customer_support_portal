@@ -1,0 +1,42 @@
+[
+  {
+    "id": "kb-001",
+    "title": "How to Reset Your Password",
+    "category": "account",
+    "keywords": ["password", "reset", "forgot", "login", "access"],
+    "content": "To reset your password:\n1. Go to the login page\n2. Click 'Forgot Password'\n3. Enter your email address\n4. Check your email for the reset link\n5. Click the link and create a new password\n\nNote: The reset link expires after 24 hours.",
+    "helpful": true
+  },
+  {
+    "id": "kb-002",
+    "title": "Tracking Your Order",
+    "category": "shipping",
+    "keywords": ["tracking", "order", "shipping", "delivery", "package"],
+    "content": "To track your order:\n1. Log into your account\n2. Go to 'My Orders'\n3. Click on the order you want to track\n4. View tracking information\n\nYou'll also receive tracking updates via email. Delivery typically takes 3-5 business days.",
+    "helpful": true
+  },
+  {
+    "id": "kb-003",
+    "title": "Understanding Your Bill",
+    "category": "billing",
+    "keywords": ["bill", "billing", "invoice", "charge", "payment", "cost"],
+    "content": "Your bill includes:\n- Subscription fee (monthly or annual)\n- Any add-on services\n- Applicable taxes\n\nBills are sent on the 1st of each month. You can view and download past invoices from your account settings.",
+    "helpful": true
+  },
+  {
+    "id": "kb-004",
+    "title": "Canceling Your Subscription",
+    "category": "account",
+    "keywords": ["cancel", "subscription", "terminate", "stop", "unsubscribe"],
+    "content": "To cancel your subscription:\n1. Go to Account Settings\n2. Click 'Subscription'\n3. Select 'Cancel Subscription'\n4. Confirm cancellation\n\nYou'll have access until the end of your current billing period. No refunds for partial months.",
+    "helpful": true
+  },
+  {
+    "id": "kb-005",
+    "title": "Updating Payment Method",
+    "category": "billing",
+    "keywords": ["payment", "credit card", "update", "billing", "method"],
+    "content": "To update your payment method:\n1. Go to Account Settings\n2. Click 'Billing'\n3. Select 'Payment Methods'\n4. Add new card or update existing\n5. Set as default payment method\n\nWe accept Visa, Mastercard, American Express, and PayPal.",
+    "helpful": true
+  }
+]
