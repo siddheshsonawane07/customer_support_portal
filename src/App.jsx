@@ -1,15 +1,44 @@
-import { TamboProvider } from '@tambo-ai/react';
-import { ChatInterface } from './components/ChatInterface';
-import { triageIndicatorComponent } from './components/TriageIndicator';
-import { knowledgeBaseTool } from './tools/knowledgeBaseTool';
-import { triageTool } from './tools/triage';
+import { TamboProvider, useTamboThreadInput } from "@tambo-ai/react";
+
+import { ChatInterface } from "./components/ChatInterface";
+import { knowledgeBaseArticleComponent } from "./components/KnowledgeBaseArticle";
+import { triageIndicatorComponent } from "./components/TriageIndicator";
+import { ticketCreatedCardComponent } from "./components/TicketCreatedCard";
+import { knowledgeBaseTool } from "./tools/knowledgeBaseTool";
+import { triageTool } from "./tools/triage";
+import ConversationalTicketTracker from "./components/ConversationalTicketTracker";
+import SmartSuggestions from "./components/SmartSuggestions";
+import ActivityFeed from "./components/ActivityFeed";
+import { Workspace } from "./components/Workspace";
+import { HybridLayout } from "./components/HybirdLayout";
+
+import {
+  createJiraTicketTool,
+  listJiraTicketsTool,
+  getTicketTool,
+  updateTicketStatusTool,
+  addCommentTool,
+  getTicketStatsTool
+} from './tools/jiraTickets';
 import { customInstructions } from './config/customInstructions';
-import { knowledgeBaseArticleComponent} from './components/KnowledgeBaseArticle'
+
+function AppContent() {
+  return (
+    <HybridLayout
+      workspace={
+        <Workspace>
+          <ConversationalTicketTracker id="main-ticket-tracker" />
+          <SmartSuggestions id="smart-suggestions" />
+          <ActivityFeed id="activity-feed" />
+        </Workspace>
+      }
+      chat={<ChatInterface />}
+    />
+  );
+}
 
 function App() {
-  // const apiKey = import.meta.env.VITE_TAMBO_API_KEY;
-
-  const apiKey = "tambo_RkQ4qdxrikHUlZAx0ZgPIYEXc9b6ibS4FHDORNg7YQ+Zz54c9ZxRtDvQLdFnWQqVlu8Ks7cVjBNC5Xk0OIddgmv07mGJ5mKdcGQvrWdcAFM=";
+ const apiKey = "tambo_RkQ4qdxrikHUlZAx0ZgPIYEXc9b6ibS4FHDORNg7YQ+Zz54c9ZxRtDvQLdFnWQqVlu8Ks7cVjBNC5Xk0OIddgmv07mGJ5mKdcGQvrWdcAFM=";
 
 
   if (!apiKey) {
@@ -25,12 +54,22 @@ function App() {
       apiKey={apiKey}
       components={[
         knowledgeBaseArticleComponent,
-        triageIndicatorComponent
+        triageIndicatorComponent,
+        ticketCreatedCardComponent
       ]}
-      tools={[knowledgeBaseTool, triageTool]}
+      tools={[
+        knowledgeBaseTool,
+        triageTool,
+        createJiraTicketTool,
+        listJiraTicketsTool,
+        getTicketTool,
+        updateTicketStatusTool,
+        addCommentTool,
+        getTicketStatsTool
+      ]}
       systemPrompt={customInstructions}
     >
-      <ChatInterface />
+      <AppContent />
     </TamboProvider>
   );
 }
