@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { withInteractable, useTamboThreadInput } from '@tambo-ai/react';
+import { useTamboThreadInput } from '@tambo-ai/react';
 import { getAllTickets } from '../tools/jiraTickets';
 
 function ConversationalTicketTrackerBase({ tickets = [] }) {
@@ -153,20 +153,32 @@ function ConversationalTicketTrackerBase({ tickets = [] }) {
   );
 }
 
-export const ConversationalTicketTracker = withInteractable(ConversationalTicketTrackerBase, {
-  componentName: 'ConversationalTicketTracker',
+// Tambo Component Definition (for registration)
+export const conversationalTicketTrackerComponent = {
+  name: 'ConversationalTicketTracker',
+  component: ConversationalTicketTrackerBase,
   description: 'Interactive ticket dashboard that users can click to trigger AI conversations',
   propsSchema: {
     type: 'object',
     properties: {
       tickets: {
         type: 'array',
+        description: 'Array of ticket objects to display',
         items: {
-          type: 'object'
+          type: 'object',
+          properties: {
+            id: { type: 'string' },
+            key: { type: 'string' },
+            summary: { type: 'string' },
+            priority: { type: 'string' },
+            status: { type: 'string' },
+            created: { type: 'string' }
+          }
         }
       }
     }
   }
-});
+};
 
-export default ConversationalTicketTracker;
+// Export for JSX usage
+export default ConversationalTicketTrackerBase;

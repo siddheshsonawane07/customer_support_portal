@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { withInteractable, useTamboThreadInput } from '@tambo-ai/react';
+import { useTamboThreadInput } from '@tambo-ai/react';
 
 function SmartSuggestionsBase({ suggestions = [] }) {
   const { setValue, submit } = useTamboThreadInput();
@@ -48,9 +48,10 @@ function SmartSuggestionsBase({ suggestions = [] }) {
   );
 }
 
-export const SmartSuggestions = withInteractable(SmartSuggestionsBase, {
-  componentName: 'SmartSuggestions',
-  description: 'AI-powered suggestions that adapt based on context and conversation',
+export const smartSuggestionsComponent = {
+  name: 'SmartSuggestions',
+  component: SmartSuggestionsBase,
+  description: 'AI-powered suggestions that adapt based on context',
   propsSchema: {
     type: 'object',
     properties: {
@@ -67,6 +68,6 @@ export const SmartSuggestions = withInteractable(SmartSuggestionsBase, {
       }
     }
   }
-});
+};
 
-export default SmartSuggestions;
+export default SmartSuggestionsBase;

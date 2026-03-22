@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { withInteractable } from '@tambo-ai/react';
 
 function ActivityFeedBase({ activities = [] }) {
   const [feed, setFeed] = useState([]);
@@ -74,8 +73,9 @@ function ActivityFeedBase({ activities = [] }) {
   );
 }
 
-export const ActivityFeed = withInteractable(ActivityFeedBase, {
-  componentName: 'ActivityFeed',
+export const activityFeedComponent = {
+  name: 'ActivityFeed',
+  component: ActivityFeedBase,
   description: 'Live feed of user activities and system events',
   propsSchema: {
     type: 'object',
@@ -93,6 +93,6 @@ export const ActivityFeed = withInteractable(ActivityFeedBase, {
       }
     }
   }
-});
+};
 
-export default ActivityFeed;
+export default ActivityFeedBase;

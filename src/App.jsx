@@ -1,14 +1,17 @@
-import { TamboProvider, useTamboThreadInput } from "@tambo-ai/react";
+import { TamboProvider } from "@tambo-ai/react";
 
 import { ChatInterface } from "./components/ChatInterface";
 import { knowledgeBaseArticleComponent } from "./components/KnowledgeBaseArticle";
 import { triageIndicatorComponent } from "./components/TriageIndicator";
 import { ticketCreatedCardComponent } from "./components/TicketCreatedCard";
+import { conversationalTicketTrackerComponent } from "./components/ConversationalTicketTracker";
+import { smartSuggestionsComponent } from "./components/SmartSuggestions";
+import { activityFeedComponent } from "./components/ActivityFeed";
 import { knowledgeBaseTool } from "./tools/knowledgeBaseTool";
 import { triageTool } from "./tools/triage";
-import ConversationalTicketTracker from "./components/ConversationalTicketTracker";
-import SmartSuggestions from "./components/SmartSuggestions";
-import ActivityFeed from "./components/ActivityFeed";
+import ConversationalTicketTrackerBase from "./components/ConversationalTicketTracker";
+import SmartSuggestionsBase from "./components/SmartSuggestions";
+import ActivityFeedBase from "./components/ActivityFeed";
 import { Workspace } from "./components/Workspace";
 import { HybridLayout } from "./components/HybirdLayout";
 
@@ -20,6 +23,7 @@ import {
   addCommentTool,
   getTicketStatsTool
 } from './tools/jiraTickets';
+
 import { customInstructions } from './config/customInstructions';
 
 function AppContent() {
@@ -27,9 +31,9 @@ function AppContent() {
     <HybridLayout
       workspace={
         <Workspace>
-          <ConversationalTicketTracker id="main-ticket-tracker" />
-          <SmartSuggestions id="smart-suggestions" />
-          <ActivityFeed id="activity-feed" />
+          <ConversationalTicketTrackerBase />
+          <SmartSuggestionsBase />
+          <ActivityFeedBase />
         </Workspace>
       }
       chat={<ChatInterface />}
@@ -38,8 +42,7 @@ function AppContent() {
 }
 
 function App() {
- const apiKey = "tambo_RkQ4qdxrikHUlZAx0ZgPIYEXc9b6ibS4FHDORNg7YQ+Zz54c9ZxRtDvQLdFnWQqVlu8Ks7cVjBNC5Xk0OIddgmv07mGJ5mKdcGQvrWdcAFM=";
-
+const apiKey = "tambo_RkQ4qdxrikHUlZAx0ZgPIYEXc9b6ibS4FHDORNg7YQ+Zz54c9ZxRtDvQLdFnWQqVlu8Ks7cVjBNC5Xk0OIddgmv07mGJ5mKdcGQvrWdcAFM=";
 
   if (!apiKey) {
     return (
@@ -55,7 +58,10 @@ function App() {
       components={[
         knowledgeBaseArticleComponent,
         triageIndicatorComponent,
-        ticketCreatedCardComponent
+        ticketCreatedCardComponent,
+        conversationalTicketTrackerComponent,
+        smartSuggestionsComponent,
+        activityFeedComponent
       ]}
       tools={[
         knowledgeBaseTool,
